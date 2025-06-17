@@ -7,16 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.Subject;
-
 import bean.School;
-import bean.Student;
+import bean.Subject;
 
-public class Subjectdao extends Dao {
+public class SubjectDao extends Dao {
 
 	public Subject get(String cd, School school) throws Exception {
 
-		// 学生インスタンスを初期化
+		// 科目インスタンスを初期化
 		Subject subject = new Subject();
 		// データベースへのコネクションを確立
 		Connection connection = getConnection();
@@ -71,10 +69,10 @@ public class Subjectdao extends Dao {
 		return subject;
 	}
 
- 	public List<Student> filter(School school) throws Exception {
+ 	public List<Subject> filter(School school) throws Exception {
 
 		// リストを初期化
-		List<Student> list = new ArrayList<>();
+		List<Subject> list = new ArrayList<>();
 		// データベースへのコネクションを確立
 		Connection connection = getConnection();
 		// プリペアードステートメント
@@ -92,7 +90,7 @@ public class Subjectdao extends Dao {
 			// リザルトセットを全件走査
 			while (resultSet.next()) {
 				// リストに科目を追加
-				list.add(resultSet.getString("subject"));
+				list.add(new Subject());
 			}
 		} catch (Exception e) {
 			throw e;
@@ -121,10 +119,98 @@ public class Subjectdao extends Dao {
 
 	public boolean save(Subject subject) throws Exception {
 
+		// コネクションを確立
+		Connection connection = getConnection();
+		// プリペアードステートメント
+		PreparedStatement statement = null;
+		// 実行件数
+		int count = 0;
+
+		try {
+			// プリペアードステートメントにINSERT文をセット
+			statement = connection.prepareStatement("insert into subject(Name, school_cd ) values(?, ?)");
+			// プリペアードステートメントに値をバインド
+			statement.setString(1, subject.getName());
+			statement.setString(2, subject.getCd());
+			statement.setString(3, subject.getSchool().getCd());
+			// プリペアードステートメントを実行
+			count = statement.executeUpdate();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+
+		if (count > 0) {
+			// 実行件数が1件以上ある場合
+			return true;
+		} else {
+			// 実行件数が0件の場合
+			return false;
+		}
 	}
 
 	public boolean delete(Subject subject) throws Exception {
 
+		// コネクションを確立
+		Connection connection = getConnection();
+		// プリペアードステートメント
+		PreparedStatement statement = null;
+		// 実行件数
+		int count = 0;
+
+		try {
+			// プリペアードステートメントにDELETE文をセット
+			statement = connection.prepareStatement("delete from school, subject");
+			// プリペアードステートメントに値をバインド
+			statement.setString(1, subject.getName());
+			statement.setString(2, subject.getCd());
+			statement.setString(3, subject.getSchool().getCd());
+			// プリペアードステートメントを実行
+			count = statement.executeUpdate();
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			// プリペアードステートメントを閉じる
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+			// コネクションを閉じる
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					throw sqle;
+				}
+			}
+		}
+
+		if (count > 0) {
+			// 実行件数が1件以上ある場合
+			return true;
+		} else {
+			// 実行件数が0件の場合
+			return false;
+		}
 	}
 
 }
