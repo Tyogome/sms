@@ -9,9 +9,9 @@ public class SubjectListAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		
-		
-		
+
+
+		// Test
 
 		// JSPへフォワード
 		req.getRequestDispatcher("subject_list.jsp").forward(req, res);
