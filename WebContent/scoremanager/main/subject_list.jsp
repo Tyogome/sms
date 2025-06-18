@@ -28,6 +28,28 @@
 
 				</div>
 			</form>
+
+
+			<c:choose>
+				<c:when test="${subjects.size()>0 }">
+					<div>検索結果：${subjects.size() }件</div>
+					<table class="table table-hover">
+						<tr>
+							<th>科目番号</th>
+							<th>科目氏名</th>
+							<th></th>
+							<th></th>
+						</tr>
+						<c:forEach var="subject" items="${subject}">
+
+
+						</c:forEach>
+					</table>
+				</c:when>
+				<c:otherwise>
+					<div>科目情報が存在しませんでした。</div>
+				</c:otherwise>
+			</c:choose>
 		</section>
 	</c:param>
 </c:import>
