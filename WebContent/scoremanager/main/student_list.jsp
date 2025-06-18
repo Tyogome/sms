@@ -52,7 +52,7 @@
 				</div>
 			</form>
 
-
+			<%--ここを参考にする --%>
 			<c:choose>
 				<c:when test="${students.size()>0 }">
 					<div>検索結果：${students.size() }件</div>
@@ -92,6 +92,9 @@
 					<div>学生情報が存在しませんでした。</div>
 				</c:otherwise>
 			</c:choose>
+
+
+
 		</section>
 	</c:param>
 </c:import>
