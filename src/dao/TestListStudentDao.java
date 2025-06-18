@@ -21,8 +21,7 @@ public class TestListStudentDao extends Dao {
 				// 学生インスタンスを初期化
 				TestListStudent testliststudent = new TestListStudent();
 				// 学生インスタンスに検索結果をセット
-				testliststudent.setNo(rSet.getString("no"));
-				testliststudent.setName(rSet.getString("name"));
+				testliststudent.setsubjectName(rSet.getString("name"));
 				testliststudent.setEntYear(rSet.getInt("ent_year"));
 				testliststudent.setClassNum(rSet.getString("class_num"));
 				testliststudent.setAttend(rSet.getBoolean("is_attend"));
@@ -39,9 +38,9 @@ public class TestListStudentDao extends Dao {
 
 	public List<TestListStudent> filter(Student student) throws Exception {
 
-		/* 学生の成績一覧 */
+		/* 学生の成績一覧 */SQL文
 		try {
-
+			
 		}
 
 
