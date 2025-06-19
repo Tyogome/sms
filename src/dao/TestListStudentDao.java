@@ -1,5 +1,7 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,11 +23,10 @@ public class TestListStudentDao extends Dao {
 				// 学生インスタンスを初期化
 				TestListStudent testliststudent = new TestListStudent();
 				// 学生インスタンスに検索結果をセット
-				testliststudent.setsubjectName(rSet.getString("name"));
-				testliststudent.setEntYear(rSet.getInt("ent_year"));
-				testliststudent.setClassNum(rSet.getString("class_num"));
-				testliststudent.setAttend(rSet.getBoolean("is_attend"));
-				testliststudent.setSchool(school);
+				testliststudent.setSubjectName(rSet.getString("subjectName"));
+				testliststudent.setSubjectCd(rSet.getString("subjectCd"));
+				testliststudent.setNum(rSet.getInt("num"));
+				testliststudent.setPoint(rSet.getInt("point"));
 				// リストに追加
 				list.add(testliststudent);
 			}
@@ -38,9 +39,16 @@ public class TestListStudentDao extends Dao {
 
 	public List<TestListStudent> filter(Student student) throws Exception {
 
+		// コネクションを確立
+		Connection connection = getConnection();
+		// プリペアードステートメント
+		PreparedStatement statement = null;
+
+
 		/* 学生の成績一覧 */SQL文
 		try {
-			
+			statement = connection.prepareStatement("select  student.no, student.name,   subject.cd, subject.name, test.no, point from test join student on test.student_no = student.no join subject on test.subject_cd = subject.cd");
+
 		}
 
 
