@@ -17,32 +17,26 @@
 				<a href="Subject_Create.action">新規登録</a>
 			</div>
 			<form method="get">
-				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
-						<div class="col-4">
-							<label class="form-label" for="student-f1-select">科目コード</label>
-						</div>
 
-						<div class="col-4">
-							<label class="form-label" for="student-f1-select">科目名</label>
-						</div>
-
-				</div>
 			</form>
-
 
 			<c:choose>
 				<c:when test="${subjects.size()>0 }">
-					<div>検索結果：${subjects.size() }件</div>
+
 					<table class="table table-hover">
 						<tr>
-							<th>科目番号</th>
-							<th>科目氏名</th>
+							<th>科目コード</th>
+							<th>科目名</th>
 							<th></th>
 							<th></th>
 						</tr>
-						<c:forEach var="subject" items="${subject}">
+						<c:forEach var="subject" items="${subjects }">
+							<tr>
+								<td>${subject.cd }</td>
+								<td>${subject.name }</td>
+							<td><a href="SubjectUpdate.action=${subject.cd }">変更</a></td>
 
-
+						</tr>
 						</c:forEach>
 					</table>
 				</c:when>

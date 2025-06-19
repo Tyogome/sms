@@ -28,6 +28,19 @@ public class SubjectListAction extends Action {
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
+		String subjectCdStr = "";
+		String subjectname = "";
+
+		int subjectcd = 0;
+
+		subjectCdStr = req.getParameter("f1");
+		subjectname = req.getParameter("f2");
+
+		if (subjectCdStr != null) {
+
+		}
+
+
 
 		/* セッションのユーザデータから、ユーザが所属している学校の科目一覧データを取得 */
 		SubjectDao SubjectDao = new SubjectDao();
@@ -38,7 +51,7 @@ public class SubjectListAction extends Action {
 
 
 		/* listのデータをjspに渡すためのコード */
-		req.setAttribute("subject", subjects);
+		req.setAttribute("subjects", subjects);
 
 
 		// JSPへフォワード
