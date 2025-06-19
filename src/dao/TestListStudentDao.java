@@ -48,7 +48,7 @@ public class TestListStudentDao extends Dao {
 		/* 学生の成績一覧 */SQL文
 		try {
 			statement = connection.prepareStatement("select  student.no, student.name,   subject.cd, subject.name, test.no, point from test join student on test.student_no = student.no join subject on test.subject_cd = subject.cd");
-
+			
 		}
 
 
