@@ -23,10 +23,10 @@ public class SubjectUpdateAction extends Action {
 		Subject subject = new Subject();
 		SubjectDao subjectDao = new SubjectDao();
 
-		cd= req.getParameter("cd");
+		cd = req.getParameter("cd");
 
 		/* DBからデータを取得する */
-		subject = subjectDao.get(cd);
+		subject = subjectDao.get(cd,teacher.getSchool());
 
 
 		cd = subject.getCd();
@@ -38,5 +38,4 @@ public class SubjectUpdateAction extends Action {
 
 		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
 	}
-
 }
