@@ -92,8 +92,12 @@ public class StudentListAction extends Action {
 			// リクエストに在学フラグをセット
 			req.setAttribute("f3", isAttendStr);
 		}
+
+
 		// リクエストに学生リストをセット
 		req.setAttribute("students", students);
+
+
 		// リクエストにデータをセット
 		req.setAttribute("class_num_set", list);
 		req.setAttribute("ent_year_set", entYearSet);
