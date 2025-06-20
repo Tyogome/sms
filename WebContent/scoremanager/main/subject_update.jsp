@@ -13,19 +13,20 @@
 		<section>
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
 			<form action="StudentUpdateExecute.action" method="get">
-				<div>
-					<label class="mx-auto py-2" for="ent_year">科目コード</label><br>
-					<input class="border border-0 ps-3" type="text" id="ent_cd" name="ent_cd" value="${ent_cd}" readonly />
-				</div>
-				<div>
-					<label class="mx-auto py-2" for="ent_year">科目名</label><br>
-					<input class="border border-0 ps-3" type="text" id="ent_name" name="ent_name" value="${ent_name}" readonly />
-				</div>
+			<div>
+			    <label class="mx-auto py-2" for="ent_cd">科目コード</label><br>
+			    <input class="border border-0 ps-3" type="text" id="ent_cd" name="ent_cd" value="${ent_cd}" readonly />
+			</div>
+			<div>
+			    <label class="mx-auto py-2" for="ent_name">科目名</label><br>
+			    <input class="border border-0 ps-3" type="text" id="ent_name" name="ent_name"
+			           value="${ent_name}" required placeholder="このフィールドに入力してください" />
+			</div>
 				<div class="mx-auto py-2">
 					<input class="btn btn-primary" type="submit" name="login" value="変更"/>
 				</div>
 			</form>
-			<a href="StudentList.action">戻る</a>
+			<a href="SubjectList.action">戻る</a>
 		</section>
 	</c:param>
 </c:import>

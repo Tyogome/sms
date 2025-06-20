@@ -37,5 +37,7 @@ public class SubjectUpdateAction extends Action {
 		req.setAttribute("name", name);
 
 		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+
+
 	}
 }
