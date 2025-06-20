@@ -11,31 +11,11 @@
 
 	<c:param name="content">
 		<section>
-		
+
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報登録</h2>
-			
+
 			<form action="SubjectCreateExecute.action" method="get">
-					<%--削除予定 --%>
-						<%-- <div>
-							<label for="ent_year">入学年度</label>
-							<select class="form-select" id="ent_year" name="ent_year">
-								<option value="0">--------</option>
-								<c:forEach var="year" items="${ent_year_set }">
-									<%-- 現在のyearと選択されていたent_yearが一致していた場合selectedを追記
-									<option value="${year }" <c:if test="${year==ent_year }">selected</c:if>>${year }</option>
-								</c:forEach>
-							</select>
-						</div>--%>
-					<%--削除予定 --%>
-						<%-- <div class="mx-auto py-2">
-							<label for="class_num">クラス</label>
-							<select class="form-select" id="class_num" name="class_num">
-								<c:forEach var="num" items="${class_num_set }">
-									<%-- 現在のnumと選択されていたclass_numが一致していた場合selectedを追記
-									<option value="${num }" <c:if test="${num==class_num }">selected</c:if>>${num }</option>
-								</c:forEach>
-							</select>
-						</div> --%>
+
 				<div class="mt-2 text-warning">${errors.get("1") }</div>
 				<div>
 					<label for="cd">科目コード</label><br>
