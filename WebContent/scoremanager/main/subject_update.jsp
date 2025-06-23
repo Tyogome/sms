@@ -20,7 +20,7 @@
 			<div>
 			    <label class="mx-auto py-2" for="ent_name">科目名</label><br>
 			    <input class="border border-0 ps-3" type="text" id="ent_name" name="ent_name"
-			           value="${ent_name}" required placeholder="このフィールドに入力してください" />
+			           value="${ent_name}" required placeholder="科目名を入力してください" required maxlength="10" />
 			</div>
 				<div class="mx-auto py-2">
 					<input class="btn btn-primary" type="submit" name="login" value="変更"/>
