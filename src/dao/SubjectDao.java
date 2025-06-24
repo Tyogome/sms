@@ -23,10 +23,10 @@ public class SubjectDao extends Dao {
 
 		try {
 			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement("select * from student where subject_cd = ?");
+			statement = connection.prepareStatement("select * from subject where cd = ?");
 			// プリペアードステートメントに学生番号をバインド
 			statement.setString(1, cd);
-			statement.setString(2, school.getCd());
+//			statement.setString(2, school.getCd());
 			// プリペアードステートメントを実行
 			ResultSet resultSet = statement.executeQuery();
 
@@ -136,7 +136,7 @@ public class SubjectDao extends Dao {
 
 		try {
 			// プリペアードステートメントにINSERT文をセット
-			statement = connection.prepareStatement("insert into subject(Name, school_cd ) values(?, ?)");
+			statement = connection.prepareStatement("insert into subject(Name, cd, school_cd ) values(?, ?, ?)");
 			// プリペアードステートメントに値をバインド
 			statement.setString(1, subject.getName());
 			statement.setString(2, subject.getCd());
@@ -220,5 +220,7 @@ public class SubjectDao extends Dao {
 			return false;
 		}
 	}
+
+
 
 }

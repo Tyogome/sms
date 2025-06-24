@@ -37,12 +37,12 @@ public class SubjectCreateExecuteAction extends Action {
 		// なし
 
 		// ビジネスロジック 4
-		if (subject_cd.length() != 3) { // 入学年度が未選択だった場合
+		if (subject_cd.length() < 3) { // 3文字以下だった場合
 			errors.put("1", "3文字以上入力してください");
 			// リクエストにエラーメッセージをセット
-			req.setAttribute("errors", errors);
+				req.setAttribute("errors", errors);
 		} else {
-			if (subjectDao.get(subject_cd) != null) { // 学生番号が重複している場合
+			if (subjectDao.get(subject_cd, teacher.getSchool()) != null) { // 科目番号が重複している場合
 				errors.put("2", "科目番号が重複しています");
 				// リクエストにエラーメッセージをセット
 				req.setAttribute("errors", errors);
@@ -50,7 +50,6 @@ public class SubjectCreateExecuteAction extends Action {
 				// studentに学生情報をセット
 				subject.setCd(subject_cd);
 				subject.setName(subject_name);
-				subject.setAttend(true);
 				subject.setSchool(teacher.getSchool());
 				// saveメソッドで情報を登録
 				subjectDao.save(subject);
@@ -67,10 +66,10 @@ public class SubjectCreateExecuteAction extends Action {
 		// JSPへフォワード 7
 		if (errors.isEmpty()) { // エラーメッセージがない場合
 			// 登録完了画面にフォワード
-			req.getRequestDispatcher("student_create_done.jsp").forward(req, res);
+			req.getRequestDispatcher("subject_create_done.jsp").forward(req, res);
 		} else { // エラーメッセージがある場合
 			// 登録画面にフォワード
-			req.getRequestDispatcher("StudentCreate.action").forward(req, res);
+			req.getRequestDispatcher("SubjectCreate.action").forward(req, res);
 		}
 	}
 

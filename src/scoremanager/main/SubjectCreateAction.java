@@ -38,7 +38,7 @@ public class SubjectCreateAction extends Action {
 
 
 		// JSPへフォワード 7
-		req.getRequestDispatcher("student_create.jsp").forward(req, res);
+		req.getRequestDispatcher("subject_create.jsp").forward(req, res);
 	}
 
 }
