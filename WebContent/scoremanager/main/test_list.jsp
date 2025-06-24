@@ -44,7 +44,7 @@
 							<label class="form-label" for="student-f3-select">科目</label>
 							<select class="form-select" id="student-f3-select" name="f3">
 								<option value="0">--------</option>
-								<c:forEach var="subject" items="${subject_set }">
+								<c:forEach var="subject" items="${subject_name_set }">
 									<%-- 現在のsubjectと選択されていたf3が一致していた場合selectedを追記 --%>
 									<option value="${subject }" <c:if test="${subject==f3 }">selected</c:if>>${subject }</option>
 								</c:forEach>
