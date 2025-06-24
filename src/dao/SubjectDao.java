@@ -135,14 +135,33 @@ public class SubjectDao extends Dao {
 		int count = 0;
 
 		try {
-			// プリペアードステートメントにINSERT文をセット
-			statement = connection.prepareStatement("insert into subject(Name, cd, school_cd ) values(?, ?, ?)");
-			// プリペアードステートメントに値をバインド
-			statement.setString(1, subject.getName());
-			statement.setString(2, subject.getCd());
-			statement.setString(3, subject.getSchool().getCd());
+
+
+			Subject old = this.get(subject.getCd(), subject.getSchool());
+
+			if (old == null) {
+				// 学生が存在しなかった場合
+				// プリペアードステートメントにINSERT文をセット
+				statement = connection.prepareStatement("insert into subject(Name, cd, school_cd ) values(?, ?, ?)");
+				// プリペアードステートメントに値をバインド
+				statement.setString(1, subject.getName());
+				statement.setString(2, subject.getCd());
+				statement.setString(3, subject.getSchool().getCd());
+
+			} else {
+				// 学生が存在した場合
+				// プリペアードステートメントにUPDATE文をセット
+				statement = connection.prepareStatement("update subject set Name = ?, cd = ?, school_cd = ?");
+				// プリペアードステートメントに値をバインド
+				statement.setString(1, subject.getName());
+				statement.setString(2, subject.getCd());
+				statement.setString(3, subject.getSchool().getCd());
+
+			}
+
 			// プリペアードステートメントを実行
 			count = statement.executeUpdate();
+
 		} catch (Exception e) {
 			throw e;
 		} finally {
