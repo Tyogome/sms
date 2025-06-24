@@ -11,12 +11,12 @@
 
 	<c:param name="content">
 		<section>
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
 			<form action="StudentUpdateExecute.action" method="get">
 			<div>
-			    <label class="mx-auto py-2" for="ent_cd">科目コード</label><br>
-			    <input class="border border-0 ps-3" type="text" id="ent_cd" name="ent_cd" value="${ent_cd}" readonly />
-			</div>
+			    <p>${subject_name}(${subject_cd})削除してもよろしいでしょうか</p>
+			    <input type="hidden" name="subject_name"
+			    		value=${ent_cd}>
 			<div>
 			    <label class="mx-auto py-2" for="ent_name">科目名</label><br>
 			    <input class="border border-0 ps-3" type="text" id="ent_name" name="ent_name"

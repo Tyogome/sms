@@ -32,7 +32,7 @@ public class SubjectUpdateAction extends Action {
 		cd = subject.getCd();
 		name = subject.getName();
 
-		req.setAttribute("ent_cd", cd);
+		req.setAttribute("cd", cd);
 
 		req.setAttribute("name", name);
 
