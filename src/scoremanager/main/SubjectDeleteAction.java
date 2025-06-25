@@ -32,11 +32,12 @@ public class SubjectDeleteAction extends Action {
 		cd = subject.getCd();
 		name = subject.getName();
 
-		req.setAttribute("ent_cd", cd);
+		req.setAttribute("cd", cd);
 
 		req.setAttribute("name", name);
 
-		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+
+		req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
 
 
 	}
