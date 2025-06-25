@@ -27,11 +27,11 @@ public class TestListAction extends Action {
 		String classNum = ""; // 入力されたクラス番号
 		String studentCd = "";// 入力された学生番号
 		int entYear = 0; // 入学年度
-		boolean isAttend = false; // 在学フラグ
 		List<Student> students = null; // 学生リスト
 		LocalDate todaysDate = LocalDate.now(); // LocalDateインスタンスを取得
 		int year = todaysDate.getYear(); // 現在の年を取得
 		StudentDao studentDao = new StudentDao(); // 学生Dao
+		ClassNumDao classNumDao = new ClassNumDao(); // クラス番号Daoを初期化
 		Map<String, String> errors = new HashMap<>(); // エラーメッセージ
 
 		/* セッションからユーザーデータを取得 */
@@ -49,16 +49,16 @@ public class TestListAction extends Action {
 		studentCd = req.getParameter("f4");
 
 		if (subjectCdStr != null) {
-
+			subjectcd = Integer.parseInt(subjectCdStr);
 		}
 
-
 		/* ユーザーデータからユーザーが所属している学校のクラスデータを取得 */
-		ClassNumDao classNumDao = new ClassNumDao();
+		List<String> list = ClassNumDao.filter(teacher.getSchool());
 
 
 		/* ユーザーデータからユーザーが所属している学校の科目データを取得 */
 		SubjectDao SubjectDao = new SubjectDao();
+
 
 		/* 入学年度リストを生成 */
 		List<Integer> entYearSet = new ArrayList<>();
@@ -69,8 +69,25 @@ public class TestListAction extends Action {
 
 
 		/* 収集したデータをリクエストに設定 */
+		// リクエストに入学年度をセット
+		req.setAttribute("f1", entYear);
+		// リクエストにクラス番号をセット
+		req.setAttribute("f2", classNum);
+		// リクエストに科目名をセット
+		req.setAttribute("f3", subjectName);
+		// リクエストに学生番号をセット
+		req.setAttribute("f4", studentCd);
+
+		// リクエストに学生リストをセット
+		req.setAttribute("students", students);
+
+		// リクエストにデータをセット
+		// req.setAttribute("class_num_set", list);
+		req.setAttribute("ent_year_set", entYearSet);
+
+		// JSPへフォワード 7
 		req.getRequestDispatcher("test_list.jsp").forward(req, res);
 
 	}
-
 }
+
