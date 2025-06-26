@@ -2,9 +2,7 @@ package scoremanager.main;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,25 +30,20 @@ public class TestListAction extends Action {
 		int year = todaysDate.getYear(); // 現在の年を取得
 		ClassNumDao classNumDao = new ClassNumDao(); // クラス番号Daoを初期化
 		SubjectDao subjectDao = new SubjectDao();	// 科目Daoを初期化
-		Map<String, String> errors = new HashMap<>(); // エラーメッセージ
 
 		/* セッションからユーザーデータを取得 */
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
-		String subjectCdStr = "";
+
 		String subjectName = "";
 
-		int subjectcd = 0;
 
 		entYearStr = req.getParameter("f1");
 		classNum = req.getParameter("f2");
 		subjectName = req.getParameter("f3");
 		studentCd = req.getParameter("f4");
 
-		if (subjectCdStr != null) {
-			subjectcd = Integer.parseInt(subjectCdStr);
-		}
 
 		/* ユーザーデータからユーザーが所属している学校のクラスデータを取得 */
 		List<String> classlist = classNumDao.filter(teacher.getSchool());
@@ -82,8 +75,9 @@ public class TestListAction extends Action {
 		req.setAttribute("students", students);
 
 		// リクエストにデータをセット
+		req.setAttribute("ent_year_set", entYearSet);
 		req.setAttribute("class_num_set", classlist);
-		req.setAttribute("subject_set", subjectlist);
+		req.setAttribute("subject_name_set", subjectlist);
 
 		// JSPへフォワード
 		req.getRequestDispatcher("test_list.jsp").forward(req, res);
