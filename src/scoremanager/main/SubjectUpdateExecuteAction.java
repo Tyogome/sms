@@ -20,14 +20,9 @@ public class SubjectUpdateExecuteAction extends Action {
 
         HttpSession session = req.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
-
-        // DBからデータ取得（今回はなし）
-
-        // subjectに科目情報をセット
-
+        
         String cd = req.getParameter("cd");
         String name = req.getParameter("name");
-
         Subject subject = new Subject();
         SubjectDao subjectDao = new SubjectDao();
 
