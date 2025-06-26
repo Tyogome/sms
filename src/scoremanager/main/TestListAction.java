@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Student;
+import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
-import dao.StudentDao;
 import dao.SubjectDao;
 import tool.Action;
 
@@ -30,8 +30,8 @@ public class TestListAction extends Action {
 		List<Student> students = null; // 学生リスト
 		LocalDate todaysDate = LocalDate.now(); // LocalDateインスタンスを取得
 		int year = todaysDate.getYear(); // 現在の年を取得
-		StudentDao studentDao = new StudentDao(); // 学生Dao
 		ClassNumDao classNumDao = new ClassNumDao(); // クラス番号Daoを初期化
+		SubjectDao subjectDao = new SubjectDao();	// 科目Daoを初期化
 		Map<String, String> errors = new HashMap<>(); // エラーメッセージ
 
 		/* セッションからユーザーデータを取得 */
@@ -53,11 +53,11 @@ public class TestListAction extends Action {
 		}
 
 		/* ユーザーデータからユーザーが所属している学校のクラスデータを取得 */
-		List<String> list = ClassNumDao.filter(teacher.getSchool());
+		List<String> classlist = classNumDao.filter(teacher.getSchool());
 
 
 		/* ユーザーデータからユーザーが所属している学校の科目データを取得 */
-		SubjectDao SubjectDao = new SubjectDao();
+		List<Subject> subjectlist = subjectDao.filter(teacher.getSchool());
 
 
 		/* 入学年度リストを生成 */
@@ -82,10 +82,10 @@ public class TestListAction extends Action {
 		req.setAttribute("students", students);
 
 		// リクエストにデータをセット
-		// req.setAttribute("class_num_set", list);
-		req.setAttribute("ent_year_set", entYearSet);
+		req.setAttribute("class_num_set", classlist);
+		req.setAttribute("subject_set", subjectlist);
 
-		// JSPへフォワード 7
+		// JSPへフォワード
 		req.getRequestDispatcher("test_list.jsp").forward(req, res);
 
 	}
