@@ -22,10 +22,13 @@
 			     <input type="hidden" name="subject_name"
 			    		value="${subject_name}">
 			</div>
-				<div class="mx-auto py-2">
-					<input class="btn btn-primary" type="submit" name="login" value="削除"/>
-				</div>
 			</form>
+			<form action="SubjectDeleteExecute.action" method="post">
+				<div class="mx-auto py-2">
+				    <input class="btn btn-danger" type="submit" name="login" value="削除"/>
+				</div>
+			</form> 
+			
 			<a href="SubjectList.action">戻る</a>
 		</section>
 	</c:param>
