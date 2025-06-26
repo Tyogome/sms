@@ -17,8 +17,22 @@ public class SubjectDeleteExecuteAction extends Action {
 		HttpSession session = req.getSession(); // セッション
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
-        SubjectDao.subjectDao = req.getSession();
-        Subject.delete;
+
+		String cd = "";
+		String name = "";
+		Subject subject = new Subject();
+		SubjectDao subjectDao = new SubjectDao();
+
+
+
+		cd = req.getParameter("subject_cd");
+		name = req.getParameter("subject_name");
+
+		System.out.println(cd);
+        System.out.println(name);
+
+        subject.setSchool(teacher.getSchool());
+        subjectDao.delete(subject);
 
         req.setAttribute("subject_name", subject.getName());
         req.getRequestDispatcher("subject_delete_done.jsp").forward(req, res);
