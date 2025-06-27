@@ -203,11 +203,10 @@ public class SubjectDao extends Dao {
 
 		try {
 			// プリペアードステートメントにDELETE文をセット
-			statement = connection.prepareStatement("delete from school, subject ");
+			statement = connection.prepareStatement("delete from subject where school_cd = ? and name = ? ");
 			// プリペアードステートメントに値をバインド
 			statement.setString(1, subject.getName());
 			statement.setString(2, subject.getCd());
-			statement.setString(3, subject.getSchool().getCd());
 			// プリペアードステートメントを実行
 			count = statement.executeUpdate();
 		} catch (Exception e) {
