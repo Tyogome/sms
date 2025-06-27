@@ -27,8 +27,8 @@
 				<div class="mx-auto py-2">
 				    <input class="btn btn-danger" type="submit" name="login" value="削除"/>
 				</div>
-			</form> 
-			
+			</form>
+
 			<a href="SubjectList.action">戻る</a>
 		</section>
 	</c:param>
