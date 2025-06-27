@@ -5,9 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import bean.Subject;
 import bean.TestListSubject;
@@ -31,12 +29,8 @@ public class TestListSubjectDao extends Dao {
 				testlistsubject.setStudentNo(rSet.getString("studentNo"));
 				testlistsubject.setStudentName(rSet.getString("studentName"));
 				testlistsubject.setClassNum(rSet.getString("classNum"));
-				//testlistsubject.setPoints(rSet.getMap<Integer,Integer>("points"));
-				Map<Integer, Integer> points = new HashMap<>();
-				points.put(1, rSet.getInt("no1")); // 1回目のテストの点数
-				points.put(2, rSet.getInt("no2")); // 2回目のテストの点数
-
-				testlistsubject.setPoints(points);
+				testlistsubject.putPoint(1,rSet.getInt("no1"));
+				testlistsubject.putPoint(2,rSet.getInt("no2"));
 				// リストに追加
 				list.add(testlistsubject);
 			}
