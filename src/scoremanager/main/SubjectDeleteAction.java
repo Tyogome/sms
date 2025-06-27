@@ -9,7 +9,7 @@ import bean.Teacher;
 import dao.SubjectDao;
 import tool.Action;
 
-public class SubjectUpdateAction extends Action {
+public class SubjectDeleteAction extends Action {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -32,11 +32,12 @@ public class SubjectUpdateAction extends Action {
 		cd = subject.getCd();
 		name = subject.getName();
 
-		req.setAttribute("cd", cd);
+		req.setAttribute("subject_cd", cd);
 
-		req.setAttribute("name", name);
+		req.setAttribute("subject_name", name);
 
-		req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+
+		req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
 
 
 	}
