@@ -30,6 +30,8 @@ public class SubjectDeleteExecuteAction extends Action {
 		System.out.println(cd);
         System.out.println(name);
 
+        subject.setCd(cd);
+        subject.setName(name);
         subject.setSchool(teacher.getSchool());
         subjectDao.delete(subject);
 
