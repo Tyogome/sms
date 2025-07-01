@@ -14,7 +14,7 @@ public class SubjectDeleteExecuteAction extends Action {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		HttpSession session = req.getSession(); // セッション
+		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
 
@@ -24,13 +24,14 @@ public class SubjectDeleteExecuteAction extends Action {
 		SubjectDao subjectDao = new SubjectDao();
 
 
-
 		cd = req.getParameter("subject_cd");
 		name = req.getParameter("subject_name");
 
 		System.out.println(cd);
         System.out.println(name);
 
+        subject.setCd(cd);
+        subject.setName(name);
         subject.setSchool(teacher.getSchool());
         subjectDao.delete(subject);
 

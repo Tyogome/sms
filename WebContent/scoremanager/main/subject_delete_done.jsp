@@ -15,7 +15,7 @@
 				<br>
 				<br>
 				<br>
-				<a href="Subject.list.action">科目一覧</a>
+				<a href="SubjectList.action">科目一覧へ戻る</a>
 			</div>
 		</div>
 	</c:param>
