@@ -16,7 +16,7 @@
 			<div>
 			    <label class="mx-auto py-2" for="ent_cd">科目コード</label><br>
 			    <input class="border border-0 ps-3" type="text" id="ent_cd" name="cd"
-			    value="${cd}"required placeholder="科目コードを入力してください" readonly />
+			    		value="${cd}"required placeholder="科目コードを入力してください" readonly />
 			</div>
 			<div>
 			    <label class="mx-auto py-2" for="ent_name">科目名</label><br>
