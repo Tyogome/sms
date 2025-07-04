@@ -32,7 +32,8 @@ public class StudentCreateExecuteAction extends Action {
 		ent_year = Integer.parseInt(req.getParameter("ent_year"));
 		student_no = req.getParameter("no");
 		student_name = req.getParameter("name");
-		class_num = req.getParameter("class_num");
+		class_num = 
+				req.getParameter("class_num");
 
 		// DBからデータ取得 3
 		// なし

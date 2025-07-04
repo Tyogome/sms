@@ -17,7 +17,6 @@ public class SubjectDeleteExecuteAction extends Action {
 		HttpSession session = req.getSession();
 		Teacher teacher = (Teacher)session.getAttribute("user");
 
-
 		String cd = "";
 		String name = "";
 		Subject subject = new Subject();
