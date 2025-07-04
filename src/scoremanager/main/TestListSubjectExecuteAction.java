@@ -21,7 +21,7 @@ public class TestListSubjectExecuteAction extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+				
         // 入力値取得
         String entYearStr = request.getParameter("entYear");
         String classNum = request.getParameter("classNum");
