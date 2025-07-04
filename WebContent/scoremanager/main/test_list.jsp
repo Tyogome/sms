@@ -57,37 +57,31 @@
 						 <input type="hidden" name="f" value="sj">
 
 					</div>
+				</form>
 
+				<form method="get">
 					<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 
-						<div class="col-2">
-							<p>学生情報</p>
-						</div>
+					<div class="col-2">
+						<p>学生情報</p>
+					</div>
 
-						<div class="col-4">
-							<label class="form-label" for="student-f4-select">学生番号</label>
-    						<input type="text" name="f4" value="${f4}" placeholder="学生番号を入力してください" required maxlength="10">
-						</div>
+					<div class="col-5">
+						<label class="form-label" for="student-f4-select">学生番号</label>
+   						<input type="text" name="f4" value="${f4}" placeholder="学生番号を入力してください" required maxlength="10">
+					</div>
 
-						<div class="col-2 text-center">
-							<button class="btn btn-secondary" id="filter-button">検索</button>
-						</div>
+					<div class="col-2 text-center">
+						<button class="btn btn-secondary" id="filter-button">検索</button>
+					</div>
 
-						  <input type="hidden" name="f" value="st">
+					<input type="hidden" name="f" value="st">
 
 					</div>
 					<p  style="color:#63E3FF">科目情報を選択または学生情報を入力してください</p>
 				</form>
 
-
-
-
-
-
-
-
-
-
 		</section>
 	</c:param>
 </c:import>
+

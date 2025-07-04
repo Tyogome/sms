@@ -1,5 +1,8 @@
 package scoremanager.main;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,7 +14,8 @@ import tool.Action;
 
 public class SubjectUpdateExecuteAction extends Action {
 
-    @Override
+    // @SuppressWarnings("unused")
+	@Override
     public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
     	/*
@@ -20,7 +24,8 @@ public class SubjectUpdateExecuteAction extends Action {
 
         HttpSession session = req.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
-        
+        Map<String, String> errors = new HashMap<>();
+
         String cd = req.getParameter("cd");
         String name = req.getParameter("name");
         Subject subject = new Subject();
@@ -31,13 +36,27 @@ public class SubjectUpdateExecuteAction extends Action {
 
         System.out.println(name);
 
-        /*
-         * セッションからSchoolBeanを取得してsubject.setSchool()に渡す*/
+        /* 科目が存在するか確認をする */
+        subject = subjectDao.get(cd, teacher.getSchool());
 
-        subject.setSchool(teacher.getSchool());
+        if (subject == null) { // 科目が存在しなっかた場合
+			errors.put("1", "科目が存在しません");
+			// リクエストにエラーメッセージをセット
+			req.setAttribute("errors", errors);
+        } else {
+	        /*
+	         * セッションからSchoolBeanを取得してsubject.setSchool()に渡す*/
 
-        subjectDao.save(subject);
+	        subject.setSchool(teacher.getSchool());
 
-        req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
+	        subjectDao.save(subject);
+        }
+
+        if(errors.isEmpty()){
+        	req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
+        } else {
+        	req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+        }
     }
 }
+

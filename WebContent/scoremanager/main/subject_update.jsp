@@ -13,18 +13,21 @@
 		<section>
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報変更</h2>
 			<form action="SubjectUpdateExecute.action" method="get">
-			<div>
-			    <label class="mx-auto py-2" for="ent_cd">科目コード</label><br>
-			    <input class="border border-0 ps-3" type="text" id="ent_cd" name="cd" value="${cd}" readonly />
-			</div>
-			<div>
-			    <label class="mx-auto py-2" for="ent_name">科目名</label><br>
-			    <input class="border border-0 ps-3" type="text" id="ent_name" name="name"
-			           value="${name}" required placeholder="科目名を入力してください" required maxlength="10" />
-			</div>
-				<div class="mx-auto py-2">
-					<input class="btn btn-primary" type="submit" name="login" value="変更"/>
+				<div>
+				    <label class="mx-auto py-2" for="ent_cd">科目コード</label><br>
+				    <input class="border border-0 ps-3" type="text" id="ent_cd" name="cd"
+				    		value="${cd}"required placeholder="科目コードを入力してください" readonly />
 				</div>
+
+					<div class="mt-2 text-warning">${errors.get("1") }</div>
+				<div>
+				    <label class="mx-auto py-2" for="ent_name">科目名</label><br>
+				    <input class="border border-0 ps-3" type="text" id="ent_name" name="name"
+				           value="${name}" required placeholder="科目名を入力してください" required maxlength="20" />
+				</div>
+					<div class="mx-auto py-2">
+						<input class="btn btn-primary" type="submit" name="login" value="変更"/>
+					</div>
 			</form>
 			<a href="SubjectList.action">戻る</a>
 		</section>
