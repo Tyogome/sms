@@ -97,7 +97,7 @@ public class TestDao extends Dao {
                 Test test = new Test();
 
                 test.setSchool(school);
-                test.setStudent(studentDao.get(rSet.getString("STUDENT_CD")));
+                test.setStudent(studentDao.get(rSet.getString("STUDENT_NO")));
                 test.setSubject(subjectDao.get(rSet.getString("SUBJECT_CD"), school));
                 test.setNo(rSet.getInt("NO"));
                 test.setPoint(rSet.getInt("POINT"));
@@ -123,14 +123,17 @@ public class TestDao extends Dao {
     	    try {
 
     	        String sql = baseSql
-    	            + " AND ent_year = ? AND class_num = ? AND subject_cd = ? AND no = ? ORDER BY student_no";
+    	            + " AND ent_year = ? AND student.class_num = ? AND subject_cd = ? AND test.no = ? ORDER BY student_no";
 
     	        statement = connection.prepareStatement(sql);
-    	        statement.setString(1, school.getCd());
-    	        statement.setInt(2, entYear);
-    	        statement.setString(3, classNum);
-    	        statement.setString(4, subject.getCd());
-    	        statement.setInt(5, num);
+    	        statement.setString(1, subject.getCd());
+    	        statement.setInt(2, num);
+
+    	        statement.setInt(3, entYear);
+    	        statement.setString(4, classNum);
+    	        statement.setString(5, subject.getCd());
+
+    	        statement.setInt(6, num);
 
     	        resultSet = statement.executeQuery();
 

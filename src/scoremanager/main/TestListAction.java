@@ -39,11 +39,6 @@ public class TestListAction extends Action {
 		String subjectName = "";
 
 
-		entYearStr = req.getParameter("f1");
-		classNum = req.getParameter("f2");
-		subjectName = req.getParameter("f3");
-		studentCd = req.getParameter("f4");
-
 
 		/* ユーザーデータからユーザーが所属している学校のクラスデータを取得 */
 		List<String> classlist = classNumDao.filter(teacher.getSchool());

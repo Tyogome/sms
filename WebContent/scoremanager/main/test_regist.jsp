@@ -42,17 +42,17 @@
 								<option value="0">--------</option>
 								<c:forEach var="subject" items="${subject_name_set }">
 									<%-- 現在のsubjectと選択されていたf3が一致していた場合selectedを追記 --%>
-									<option value="${subject }" <c:if test="${subject==f3 }">selected</c:if>>${subject }</option>
+									<option value="${subject.cd }" <c:if test="${subject.cd==f3 }">selected</c:if>>${subject.name }</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="col-2">
 							<label class="form-label" for="student-f2-select">回数</label>
-							<select class="form-select" id="student-f2-select" name="f2">
+							<select class="form-select" id="student-f2-select" name="f4">
 								<option value="0">--------</option>
-								<c:forEach var="subject" items="${subject_name_set }">
+								<c:forEach var="count" items="${countList }">
 									<%-- 現在のsubjectと選択されていたf3が一致していた場合selectedを追記 --%>
-									<option value="${subject }" <c:if test="${subject==f3 }">selected</c:if>>${subject }</option>
+									<option value="${count }" <c:if test="${count==f4 }">selected</c:if>>${count }</option>
 								</c:forEach>
 							</select>
 						</div>

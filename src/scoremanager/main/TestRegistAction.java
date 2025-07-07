@@ -30,10 +30,10 @@ public class TestRegistAction extends Action {
 		String entYearStr = null; // 入力された入学年度
 		int entYear = 0; // 入学年度
 		String classNum = ""; // 入力されたクラス番号
-		String subject = ""; //入力された科目
+		String subjectName = ""; //入力された科目
 		String countStr = null; //入力された回数
 		int count = 0; // 回数
-		ClassNumDao cNumDao = new ClassNumDao(); // クラス番号Dao
+		ClassNumDao classNumDao = new ClassNumDao(); // クラス番号Dao
 		SubjectDao subjectDao = new SubjectDao(); //科目Dao
 		TestDao testDao = new TestDao(); // テストDao
 		School teacherSchool = teacher.getSchool(); // テスト情報
@@ -45,12 +45,15 @@ public class TestRegistAction extends Action {
 		// リクエストパラメーターの取得 2
 		entYearStr = req.getParameter("f1");
 		classNum = req.getParameter("f2");
-		subject = req.getParameter("f3");
+		subjectName = req.getParameter("f3");
 		countStr = req.getParameter("f4");
 
-		//DBからデータ取得3
-		List<String>cNumlist = cNumDao.filter(teacherSchool); //クラス情報
-		List<Subject>list = subjectDao.filter(teacherSchool); //科目情報
+		/* ユーザーデータからユーザーが所属している学校のクラスデータを取得 */
+		List<String> classlist = classNumDao.filter(teacher.getSchool());
+
+
+		/* ユーザーデータからユーザーが所属している学校の科目データを取得 */
+		List<Subject> subjectlist = subjectDao.filter(teacher.getSchool());
 
 		//ビジネスロジック4
 		if (entYearStr != null) {
@@ -60,10 +63,10 @@ public class TestRegistAction extends Action {
 			count = Integer.parseInt(countStr);
 		}
 
-		// リストを初期化
+		/* 入学年度リストを生成 */
 		List<Integer> entYearSet = new ArrayList<>();
-		// 10年前から10年後まで年をリストに追加
-		for (int i = year - 10; i < year + 11; i++) {
+		// 10年前から1年後まで年をリストに追加
+		for (int i = year - 10; i < year + 1; i++) {
 			entYearSet.add(i);
 		}
 
@@ -75,13 +78,13 @@ public class TestRegistAction extends Action {
 		}
 
 		// 検索
-		if (entYear == 0 && classNum == null && subject == null && count == 0) {
+		if (entYear == 0 && classNum == null && subjectName == null && count == 0) {
 
-		} else if (entYear != 0 && !(classNum.equals("0")) && !(subject.equals("0")) && count != 0) {
+		} else if (entYear != 0 && !(classNum.equals("0")) && !(subjectName.equals("0")) && count != 0) {
 			//テストリスト
-			List<Test>testlist = testDao.filter(entYear, classNum, subjectDao.get(subject, teacherSchool), count, teacherSchool);
+			List<Test>testlist = testDao.filter(entYear, classNum, subjectDao.get(subjectName, teacherSchool), count, teacherSchool);
 			//科目名
-			String subject_name1 = subjectDao.get(subject, teacherSchool).getName();
+			String subject_name1 = subjectDao.get(subjectName, teacherSchool).getName();
 			//リクエストに検索結果をセット
 			req.setAttribute("testlist", testlist);
 			//リクエストに科目名をセット
@@ -91,7 +94,10 @@ public class TestRegistAction extends Action {
 			req.setAttribute("errors", errors);
 		}
 
-
+		entYearStr = req.getParameter("f1");
+		classNum = req.getParameter("f2");
+		subjectName = req.getParameter("f3");
+		countStr = req.getParameter("f4");
 
 
 		//レスポンス値をセット6
@@ -100,15 +106,17 @@ public class TestRegistAction extends Action {
 		//リクエストにクラス番号をセット
 		req.setAttribute("f2", classNum);
 		//リクエストに科目をセット
-		req.setAttribute("f3", subject);
+		req.setAttribute("f3", subjectName);
 		//リクエストに回数をセット
 		req.setAttribute("f4", count);
-		//リクエストに入学年度リストをセット
-		req.setAttribute("entYearList", entYearSet);
+
+
+		// リクエストにデータをセット
+		req.setAttribute("ent_year_set", entYearSet);
 		//リクエストにクラス情報リストをセット
-		req.setAttribute("cNumList", cNumlist);
+		req.setAttribute("class_num_set", classlist);
 		//リクエストに科目情報リストをセット
-		req.setAttribute("list", list);
+		req.setAttribute("subject_name_set", subjectlist);
 		//リクエストに回数リストをセット
 		req.setAttribute("countList", countSet);
 
