@@ -14,7 +14,7 @@ import bean.Test;
 
 public class TestDao extends Dao {
 
-    private String baseSql="SELECT * FROM TEST WHERE SCHOOL_CD =?";
+    private String baseSql="select student.no as student_no, student.name, student.ent_year, student.class_num, student.is_attend, student.school_cd, test.subject_cd, test.no as count, test.point from student left join (select * from test where subject_cd = ? and no = ?) as test on student.no = test.student_no";
 
 
     public Test get(Student student, Subject subject, School school, int no) throws Exception {
