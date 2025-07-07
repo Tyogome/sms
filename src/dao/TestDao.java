@@ -123,7 +123,7 @@ public class TestDao extends Dao {
     	    try {
 
     	        String sql = baseSql
-    	            + " AND ent_year = ? AND student.class_num = ? AND subject_cd = ? AND test.no = ? ORDER BY student_no";
+    	            + " where ent_year = ? AND student.class_num = ? AND subject_cd = ? AND test.no = ? ORDER BY student_no";
 
     	        statement = connection.prepareStatement(sql);
     	        statement.setString(1, subject.getCd());

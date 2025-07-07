@@ -66,8 +66,39 @@
 					</div>
 				</form>
 
+
+				<form action="TestRegistExecute.action" method="get">
+				<c:choose>
+					<c:when test="${testlist.size()>0 }">
+						<div>科目：${subject_name }（${f4 }回）</div>
+						<!-- 表示するテーブルの作成 -->
+						<table class="table table-hover">
+							<tr>
+								<th>入学年度</th>
+								<th>クラス</th>
+								<th>学生番号</th>
+								<th>氏名</th>
+								<th>点数</th>
+							</tr>
+							<c:forEach var="test" items="${testlist }" varStatus="st">
+								<tr>
+									<td>${test.student.entYear }</td> <!-- 入学年度 -->
+									<td>${test.student.classNum }</td> <!-- クラス -->
+									<td>${test.student.no }</td> <!-- 学生番号 -->
+									<td>${test.student.name }</td> <!-- 氏名 -->
+									<td><input type="text" name="point_${test.student.no }"<c:if test="${test.no != 0}">value="${test.point }"</c:if> value=""><div class="mt-2 text-warning">${errors.get(st.count) }</div></td> <!-- 得点 -->
+								</tr>
+								<input type="hidden" name="regist" value="${test.student.no }">
+							</c:forEach>
+						</table>
+						<input type="hidden" name="count" value="${f4 }">
+						<input type="hidden" name="subject" value="${f3 }">
+						<div class="col-2 text-center">
+							<button class="btn btn-secondary" id="filter-button">登録して終了</button>
+						</div>
+					</c:when>
+				</c:choose>
+			</form>
 		</section>
 	</c:param>
-
-
 </c:import>

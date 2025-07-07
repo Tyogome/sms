@@ -81,6 +81,14 @@ public class TestRegistAction extends Action {
 		if (entYear == 0 && classNum == null && subjectName == null && count == 0) {
 
 		} else if (entYear != 0 && !(classNum.equals("0")) && !(subjectName.equals("0")) && count != 0) {
+
+			/* debug */
+			System.out.println("debug_entYear:" + entYear);
+			System.out.println("debug_classNum:" + classNum);
+			Subject s = subjectDao.get(subjectName, teacherSchool);
+			System.out.println("debug_subjectCd:" + s.getCd());
+			System.out.println("debug_subjectName:" + s.getName());
+
 			//テストリスト
 			List<Test>testlist = testDao.filter(entYear, classNum, subjectDao.get(subjectName, teacherSchool), count, teacherSchool);
 			//科目名
