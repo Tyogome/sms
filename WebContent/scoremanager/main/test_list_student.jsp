@@ -12,24 +12,24 @@
   <fieldset>
     <legend>科目情報</legend>
     入学年度:
-    <select name="entYear">
-      <c:forEach var="year" items="${entYearList}">
-        <option value="${year}" <c:if test="${year == param.entYear}">selected</c:if>>${year}</option>
+    <select name="f1">
+      <c:forEach var="year" items="${entYearSet}">
+        <option value="${year}" <c:if test="${year == f1}">selected</c:if>>${year}</option>
       </c:forEach>
     </select>
 
     クラス:
-    <select name="classNum">
-      <c:forEach var="classNum" items="${classNumList}">
-        <option value="${classNum}" <c:if test="${classNum == param.classNum}">selected</c:if>>${classNum}</option>
+    <select name="f2">
+      <c:forEach var="classNum" items="${cNumList}">
+        <option value="${classNum}" <c:if test="${classNum == f2}">selected</c:if>>${classNum}</option>
       </c:forEach>
     </select>
 
     科目:
-    <select name="subjectCd">
-      <c:forEach var="subject" items="${subjectList}">
-        <option value="${subject.subjectCd}" <c:if test="${subject.subjectCd == param.subjectCd}">selected</c:if>>
-          ${subject.subjectName}
+    <select name="f3">
+      <c:forEach var="subject" items="${list}">
+        <option value="${subject.cd}" <c:if test="${subject.cd == f3}">selected</c:if>>
+          ${subject.name}
         </option>
       </c:forEach>
     </select>
@@ -40,16 +40,16 @@
   <fieldset>
     <legend>学生情報</legend>
     学生番号:
-    <input type="text" name="studentNo" value="${param.studentNo}" placeholder="学生番号を入力してください">
+    <input type="text" name="f4" value="${f4}" placeholder="学生番号を入力してください">
     <input type="submit" value="検索">
   </fieldset>
 </form>
 
 <!-- 選択された科目名表示 -->
-<p>科目：<c:out value="${selectedSubject.subjectName}" /></p>
+<p>氏名：${student.name}(${f4})</p>
 
 <!-- 成績一覧テーブル -->
-<c:if test="${not empty testList}">
+<c:if test="${not empty testlist}">
   <table border="1">
     <thead>
       <tr>
@@ -62,7 +62,7 @@
       </tr>
     </thead>
     <tbody>
-      <c:forEach var="student" items="${testList}">
+      <c:forEach var="student" items="${testlist}">
         <tr>
           <td><c:out value="${student.entYear}" /></td>
           <td><c:out value="${student.classNum}" /></td>
