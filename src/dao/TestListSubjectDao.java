@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.School;
 import bean.Subject;
 import bean.TestListSubject;
 
@@ -41,7 +42,7 @@ public class TestListSubjectDao extends Dao {
 		return list;
 	}
 
-	public List<TestListSubject> filter(Subject subject) throws Exception {
+	public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school) throws Exception {
 
 		// リストを初期化
 		List<TestListSubject> list = new ArrayList<>();
