@@ -33,7 +33,7 @@ public class TestListStudentExecuteAction extends HttpServlet {
             try {
                 entYear = Integer.parseInt(entYearStr);
             } catch (NumberFormatException e) {
-                entYear = 0; 
+                entYear = 0;
             }
         }
 
