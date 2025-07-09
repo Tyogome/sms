@@ -38,11 +38,15 @@ public class TestListStudentExecuteAction extends Action {
 
 		// リクエストパラーメーターの取得2
 		student_no = req.getParameter("f4");
+		System.out.println("student_no:" + student_no);
 
 		// DBからの取得3
 		student = studentDao.get(student_no);
+		System.out.println("student:" + student.getNo());
 		if (student != null) {
+			System.out.println("do-student != null");
 			tlslist = tlsDao.filter(student);
+
 		}
 
 		List<String>cNumlist = cNumDao.filter(teacher.getSchool()); //クラス情報
@@ -60,7 +64,7 @@ public class TestListStudentExecuteAction extends Action {
 		// リクエストに学生情報をセット
 		req.setAttribute("student", student);
 		// リクエストに学生別一覧をセット
-		req.setAttribute("tlslist", tlslist);
+		req.setAttribute("testlist", tlslist);
 		// リクエストに学生番号をセット
 		req.setAttribute("f4", student_no);
 		//リクエストにクラス情報リストをセット
