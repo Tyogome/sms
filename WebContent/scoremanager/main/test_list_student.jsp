@@ -64,14 +64,15 @@
     <tbody>
       <c:forEach var="student" items="${testlist}">
         <tr>
-          <td><c:out value="${student.entYear}" /></td>
-          <td><c:out value="${student.classNum}" /></td>
-          <td><c:out value="${student.studentNo}" /></td>
-          <td><c:out value="${student.studentName}" /></td>
-          <td><c:out value="${student.point[1]}" /></td>
-          <td><c:out value="${student.point[2]}" /></td>
+          <td><c:out value="${test.entYear}" /></td>
+          <td><c:out value="${test.classNum}" /></td>
+          <td><c:out value="${test.studentNo}" /></td>
+          <td><c:out value="${test.studentName}" /></td>
+          <td><c:out value="${test.point[1]}" /></td>
+          <td><c:out value="${test.point[2]}" /></td>
         </tr>
       </c:forEach>
     </tbody>
   </table>
 </c:if>
+

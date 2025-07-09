@@ -12,23 +12,23 @@
   <fieldset>
     <legend>科目情報</legend>
     入学年度:
-    <select name="entYear">
+    <select name="f1">
       <c:forEach var="year" items="${entYearList}">
-        <option value="${year}" <c:if test="${year == param.entYear}">selected</c:if>>${year}</option>
+        <option value="${year}" <c:if test="${year == f1}">selected</c:if>>${year}</option>
       </c:forEach>
     </select>
 
     クラス:
-    <select name="classNum">
+    <select name="f2">
       <c:forEach var="classNum" items="${classNumList}">
-        <option value="${classNum}" <c:if test="${classNum == param.classNum}">selected</c:if>>${classNum}</option>
+        <option value="${classNum}" <c:if test="${classNum == f2}">selected</c:if>>${classNum}</option>
       </c:forEach>
     </select>
 
     科目:
-    <select name="subjectCd">
+    <select name="f3">
       <c:forEach var="subject" items="${subjectList}">
-        <option value="${subject.subjectCd}" <c:if test="${subject.subjectCd == param.subjectCd}">selected</c:if>>
+        <option value="${subject.subjectCd}" <c:if test="${subject.subjectCd == f3}">selected</c:if>>
           ${subject.subjectName}
         </option>
       </c:forEach>
@@ -40,7 +40,7 @@
   <fieldset>
     <legend>学生情報</legend>
     学生番号:
-    <input type="text" name="studentNo" value="${param.studentNo}" placeholder="学生番号を入力してください">
+    <input type="text" name="f4" value="${param.studentNo}" placeholder="学生番号を入力してください">
     <input type="submit" value="検索">
   </fieldset>
 </form>
